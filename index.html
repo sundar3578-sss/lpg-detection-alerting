@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mqtt/5.10.3/mqtt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js" async defer></script>
+  </head>
+  <body>
+    <nav>
+      <p class="title">LPG Detection and Alerting</p>
+      <div class="button-box">
+        <div class="mqtt-status"></div>
+        <button class="connect-button" type="button">Connect</button>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="left-container">
+        <div class="graph">
+          <canvas class="lpg-chart"></canvas>
+        </div>
+        <div class="status-box">
+          <h2 class="status-heading">Device Status:</h2>
+          <h1 class="status-msg">--</h1>
+        </div>
+      </div>
+
+      <div class="right-container">
+        <div class="right-inner-container">
+          <div class="guage">
+            <div class="guage-body">
+              <div class="guage-fill"></div>
+              <div class="guage-cover">-- PPM</div>
+            </div>
+          </div>
+          <div class="input-box">
+            <p>Select LPG Threshold</p>
+            <div class="threshold-input">
+              <i class="fa-solid fa-minus"></i>
+              <div class="input-container">
+                <input
+                  type="number"
+                  class="num-input"
+                  min="0"
+                  max="100"
+                  value="60"
+                />
+              </div>
+              <i class="fa-solid fa-plus"></i>
+            </div>
+
+            <div class="threshold-btn">
+              <button class="thr-btn" type="button">Set Threshold</button>
+            </div>
+          </div>
+          <div class="bzz-btn-container">
+            <button class="bzr-btn" type="button">Terminate</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,272 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", serif;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* Nav bar styling */
+nav {
+  height: 80px;
+  padding-left: 50px;
+  padding-right: 50px;
+  border-bottom: 1px #999999 solid;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  color: #ff8400;
+  font-size: 35px;
+  font-weight: 600;
+}
+
+.button-box {
+  height: 35px;
+  width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mqtt-status {
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  border: 1px #999999 solid;
+  background-color: red;
+}
+
+.connect-button {
+  height: 35px;
+  width: 100px;
+  background-color: #ff8400;
+  border-radius: 52.5px;
+  border: none;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.connect-button:hover {
+  background-color: rgb(255, 116, 66);
+}
+
+.connect-button:disabled {
+  background-color: grey;
+  cursor: not-allowed;
+}
+
+.connect-button:connected {
+  background-color: green;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  padding-left: 50px;
+  padding-right: 50px;
+  display: flex;
+}
+
+/* Left container styling */
+.left-container {
+  width: 100%;
+  max-width: 900px;
+}
+
+.graph {
+  width: 100%;
+  height: 400px;
+  padding: 10px 10px 10px 10px;
+}
+
+.status-box {
+  width: 100%;
+  height: 145px;
+  padding-top: 20px;
+  padding-left: 40px;
+}
+
+.status-heading {
+  padding-bottom: 20px;
+}
+
+/* Right container syling */
+.right-container {
+  width: 100%;
+  max-width: 450px;
+}
+
+.right-inner-container {
+  width: 100%;
+  height: 545px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.guage {
+  height: 150px;
+  width: 300px;
+}
+
+.guage-body {
+  height: 100%;
+  width: 100%;
+  background-color: #b4c0be;
+  position: relative;
+  border-top-left-radius: 100% 200%;
+  border-top-right-radius: 100% 200%;
+  overflow: hidden;
+}
+
+.guage-fill {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 100%;
+  left: 0%;
+  background-color: #ff8400;
+  transform-origin: center top;
+  transform: rotate(0.01turn);
+  transition: transform 0.2s ease-out;
+}
+
+.guage-cover {
+  height: 75%;
+  width: 75%;
+  background-color: white;
+  position: absolute;
+  top: 25%;
+  left: 13%;
+  border-top-left-radius: 100% 200%;
+  border-top-right-radius: 100% 200%;
+
+  /* Text styling */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Roboto", serif;
+  font-size: 25px;
+  padding-top: 20%;
+  color: black;
+}
+
+.input-box {
+  height: 200px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  color: #ff8400;
+}
+
+.threshold-input {
+  width: 60%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-container {
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px black solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.threshold-input i {
+  font-size: 20px;
+  color: #ff8400;
+  cursor: pointer;
+}
+
+.fa-minus {
+  margin-right: 5%;
+}
+
+.fa-plus {
+  margin-left: 5%;
+}
+
+.num-input {
+  text-align: center;
+  font-size: 30px;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.num-input::-webkit-outer-spin-button,
+.num-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.thr-btn {
+  font-family: "Roboto", serif;
+  font-size: 17px;
+  height: 50px;
+  width: 150px;
+  border-radius: 50px;
+  background-color: transparent;
+  border: 1px solid #ff8400;
+  transition: 0.1s ease-out;
+  color: #ff8400;
+  cursor: pointer;
+}
+
+.thr-btn:hover {
+  background-color: #ff8400;
+  color: white;
+}
+
+.thr-btn:active {
+  background-color: rgb(255, 110, 58);
+}
+
+.bzz-btn-container {
+  height: 100px;
+  width: 300px;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  /* background-color: red; */
+}
+
+.bzr-btn {
+  font-family: "Roboto", serif;
+  font-size: 20px;
+  height: 50px;
+  width: 150px;
+  border-radius: 50px;
+  background-color: transparent;
+  border: 1px solid #ff8400;
+  transition: 0.1s ease-out;
+  color: #ff8400;
+  cursor: pointer;
+}
+
+.bzr-btn:hover {
+  background-color: #ff8400;
+  color: white;
+}
+
+.bzr-btn:active {
+  background-color: rgb(255, 110, 58);
+}
