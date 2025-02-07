@@ -1,0 +1,5 @@
+#define MQTT_BROKER_URL       "your-mqtt-broker"
+#define CIRCUIT_DIGEST_URL    "https://www.circuitdigest.cloud/send_sms?ID="
+#define TEMPLATE_ID           "template-id"
+#define APIKEY                "your-circuit-digest-api-key"
+#define NUMBER                "91**********"
