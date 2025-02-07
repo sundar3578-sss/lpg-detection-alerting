@@ -1,1 +1,1 @@
-# lpg-detection-alerting
+# LPG Detection and Alerting
