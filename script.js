@@ -77,7 +77,7 @@ function updateGuage(value) {
 
 // MQTT initiliziation
 // MQTT broker URL
-const broker_url = "wss://test.mosquitto.org:8884/mqtt";
+const broker_url = "wss://test.mosquitto.org:8081/mqtt";
 
 // MQTT topics
 const web_connection_status = "lpg-detection-alerting/web-connection-status";
@@ -125,10 +125,10 @@ function disconnecting_state() {
 connect_button.addEventListener("click", () => {
   if (!isConnected) {
     connecting_state();
-    lpg_client = mqtt.connect(broker_url);
+    lpg_client = mqtt.connect(broker_url); // Connect to Mosquitto broker
 
     lpg_client.on("connect", () => {
-      console.log("Connected to MQTT broker");
+      console.log("Connected to Mosquitto MQTT broker");
       isConnected = true;
       mqtt_status.style.backgroundColor = "green";
       connected_state();
@@ -137,47 +137,37 @@ connect_button.addEventListener("click", () => {
         disconnect_state();
       }, 1000);
 
+      // Publishing to a topic
       lpg_client.publish(web_connection_status, "1", (err) => {
         console.log(
           `Publishing to topic ${web_connection_status}, error: ${err}`
         );
       });
 
+      // Subscribe to topics
       lpg_client.subscribe(lpg_ppm_topic, (err) => {
-        if (err) {
-          console.log("Subscription error: ", err);
-        } else {
-          console.log("Subscribed to: ", lpg_ppm_topic);
-        }
+        if (err) console.log("Subscription error: ", err);
+        else console.log("Subscribed to: ", lpg_ppm_topic);
       });
 
       lpg_client.subscribe(gas_threshold_fb_topic, (err) => {
-        if (err) {
-          console.log("Subscription error: ", err);
-        } else {
-          console.log("Subscribed to: ", gas_threshold_fb_topic);
-        }
+        if (err) console.log("Subscription error: ", err);
+        else console.log("Subscribed to: ", gas_threshold_fb_topic);
       });
 
       lpg_client.subscribe(lpg_alert_topic, (err) => {
-        if (err) {
-          console.log("Subscription error: ", err);
-        } else {
-          console.log("Subscribed to: ", lpg_alert_topic);
-        }
+        if (err) console.log("Subscription error: ", err);
+        else console.log("Subscribed to: ", lpg_alert_topic);
       });
 
       // Listen for incoming messages
       lpg_client.on("message", (received_topic, msg) => {
-        if (received_topic == lpg_ppm_topic) {
-          console.log(msg);
+        if (received_topic === lpg_ppm_topic) {
           lpg_ppm = Number(msg);
-
           updateGuage(lpg_ppm);
           addDataGraph(lpg_ppm);
-        } else if (received_topic == lpg_alert_topic) {
+        } else if (received_topic === lpg_alert_topic) {
           msg = msg.toString();
-          console.log(msg);
           if (msg === "lpg alert") {
             alert("LPG Level exceeded!!!");
             status_msg.innerHTML = "WARNING!! LPG Level exceeded!";
@@ -186,8 +176,7 @@ connect_button.addEventListener("click", () => {
             status_msg.innerHTML = "LPG level normal";
             status_msg.style.color = "green";
           }
-        } else if ((received_topic = gas_threshold_fb_topic)) {
-          console.log(msg);
+        } else if (received_topic === gas_threshold_fb_topic) {
           lpg_threshold = Number(msg);
           threshold_input.value = lpg_threshold;
         }
@@ -199,22 +188,12 @@ connect_button.addEventListener("click", () => {
       isConnected = false;
       mqtt_status.style.backgroundColor = "red";
       connect_state();
-      lpg_client.publish(web_connection_status, "1", (err) => {
-        console.log(
-          `Publishing to topic ${web_connection_status}, error: ${err}`
-        );
-      });
     });
   } else {
     disconnecting_state();
-    lpg_client.publish(web_connection_status, "1", (err) => {
-      console.log(
-        `Publishing to topic ${web_connection_status}, error: ${err}`
-      );
-    });
     setTimeout(() => {
       lpg_client.end(true, () => {
-        console.log("Disconnected from MQTT broker");
+        console.log("Disconnected from Mosquitto MQTT broker");
         isConnected = false;
         mqtt_status.style.backgroundColor = "red";
         connect_state();
