@@ -77,7 +77,7 @@ function updateGuage(value) {
 
 // MQTT initiliziation
 // MQTT broker URL
-const broker_url = "wss://broker.hivemq.com:8884/mqtt";
+const broker_url = "wss://test.mosquitto.org:8884/mqtt";
 
 // MQTT topics
 const web_connection_status = "lpg-detection-alerting/web-connection-status";
