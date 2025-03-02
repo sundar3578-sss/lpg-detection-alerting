@@ -128,7 +128,7 @@ connect_button.addEventListener("click", () => {
     lpg_client = mqtt.connect(broker_url); // Connect to Mosquitto broker
 
     lpg_client.on("connect", () => {
-      console.log("Connected to Mosquitto MQTT broker");
+      console.log("Connected to MQTT broker");
       isConnected = true;
       mqtt_status.style.backgroundColor = "green";
       connected_state();
@@ -193,7 +193,7 @@ connect_button.addEventListener("click", () => {
     disconnecting_state();
     setTimeout(() => {
       lpg_client.end(true, () => {
-        console.log("Disconnected from Mosquitto MQTT broker");
+        console.log("Disconnected from MQTT broker");
         isConnected = false;
         mqtt_status.style.backgroundColor = "red";
         connect_state();
